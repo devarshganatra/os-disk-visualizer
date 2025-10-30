@@ -1,0 +1,27 @@
+/* src/components/SeekTimeChart.module.css */
+.container {
+  padding: 1.5rem;
+  background-color: #1f2937; /* gray-800 */
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.header {
+  font-size: 1.25rem; /* xl */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #2dd4bf; /* teal-400 */
+}
+
+.totalSeek {
+  font-size: 0.875rem;
+  color: #d1d5db; /* gray-300 */
+  margin-bottom: 1.5rem;
+}
+
+.totalSeek span {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+}
