@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import InputController from './components/InputController';
 import AlgorithmComparator from './components/AlgorithmComparator';
-import SeekTimeChart from './components/SeekTimeChart'; // Import the new chart
-import ComparisonLineChart from './components/ComparisonLineChart'; // Import the new comparison chart
+import SeekTimeChart from './components/SeekTimeChart';
+import ComparisonLineChart from './components/ComparisonLineChart';
 import './App.css'; 
 
 import * as algos from './utils/algorithms';
@@ -29,22 +29,6 @@ function App() {
         {vizData && (
           <div className="vizGrid">
             
-            {/* --- All-in-One Comparison Line Chart --- */}
-            <div className="comparator"> {/* Spans 2 columns */}
-              <ComparisonLineChart
-                head={vizData.head}
-                queue={vizData.queue}
-              />
-            </div>
-
-            {/* --- Final Stats Bar Chart --- */}
-            <div className="comparator"> {/* Spans 2 columns */}
-              <AlgorithmComparator
-                head={vizData.head}
-                queue={vizData.queue}
-              />
-            </div>
-
             {/* --- Separate Graphs (All 10 Variants) --- */}
             <SeekTimeChart
               head={vizData.head}
@@ -114,6 +98,22 @@ function App() {
               logicFunction={algos.calculateCLOOK}
               direction="down"
             />
+
+            {/* --- Final Stats Bar Chart (MOVED HERE) --- */}
+            <div className="comparator"> {/* Spans 2 columns */}
+              <AlgorithmComparator
+                head={vizData.head}
+                queue={vizData.queue}
+              />
+            </div>
+
+            {/* --- All-in-One Comparison Line Chart (STAYS LAST) --- */}
+            <div className="comparator"> {/* Spans 2 columns */}
+              <ComparisonLineChart
+                head={vizData.head}
+                queue={vizData.queue}
+              />
+            </div>
 
           </div>
         )}

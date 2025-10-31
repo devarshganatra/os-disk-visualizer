@@ -3,21 +3,40 @@ import React, { useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import styles from './SeekTimeChart.module.css';
 
+// This is our new custom tooltip component
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    return (
+      <div className={styles.tooltip}>
+        <p>{`Step: ${label}`}</p>
+        <p>{`Track: ${data.track}`}</p>
+        {/* Only show seek time if it's not the starting point (step 0) */}
+        {data.seek > 0 && <p>{`Seek Time: ${data.seek}`}</p>}
+      </div>
+    );
+  }
+  return null;
+};
+
 export default function SeekTimeChart({ head, queue, algorithmName, logicFunction, direction }) {
-
+  
   const { data, totalSeek } = useMemo(() => {
-    // Get the steps from our logic function
     const { steps, totalSeek } = logicFunction(head, [...queue], direction);
-
+    
     // Transform data for recharts
     // Start with the initial head position at step 0
-    let chartData = [{ step: 0, track: head }];
-
+    let chartData = [{ step: 0, track: head, seek: 0 }]; // Add seek: 0
+    
     // Add all the subsequent steps
     steps.forEach((step, i) => {
-      chartData.push({ step: i + 1, track: step.to });
+      chartData.push({ 
+        step: i + 1, 
+        track: step.to,
+        seek: step.seek // Add the seek value for this step
+      });
     });
-
+    
     return { data: chartData, totalSeek };
   }, [head, queue, logicFunction, direction]);
 
@@ -46,10 +65,10 @@ export default function SeekTimeChart({ head, queue, algorithmName, logicFunctio
             label={{ value: 'Track Number', angle: -90, position: 'insideLeft', dx: -10 }} 
             stroke="#9ca3af" 
           />
-          <Tooltip
-            contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '0.5rem' }}
-            labelStyle={{ color: '#ffffff' }}
-          />
+          
+          {/* Use the new CustomTooltip component */}
+          <Tooltip content={<CustomTooltip />} />
+
           <Legend verticalAlign="top" height={36} />
           <Line 
             type="monotone" 

@@ -25,3 +25,20 @@
   font-size: 1rem;
   color: #ffffff;
 }
+
+/* New styles for the custom tooltip */
+.tooltip {
+  background-color: #1f2937; /* gray-800 */
+  border: 1px solid #4b5563; /* gray-600 */
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip p {
+  margin: 0 0 0.25rem 0;
+}
+.tooltip p:last-child {
+  margin-bottom: 0;
+}
