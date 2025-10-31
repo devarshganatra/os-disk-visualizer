@@ -43,7 +43,7 @@ You must have [Node.js](https://nodejs.org/en) (which includes `npm`) installed 
 
 1.  **Clone the repo**
     ```sh
-    git clone [https://github.com/YOUR_USERNAME/os-disk-visualizer.git](https://github.com/YOUR_USERNAME/os-disk-visualizer.git)
+    git clone https://github.com/devarshganatra/os-disk-visualizer.git
     ```
 2.  **Navigate to the project directory**
     ```sh
